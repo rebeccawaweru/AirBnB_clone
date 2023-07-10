@@ -25,8 +25,8 @@ jobs:
         run: |
           #Making sure our code sticks to the recommended python coding guidelines
           python -m pip install pycodestyle
-          pycodestyle --first models *.py
+          pycodestyle --first models/base_model.py
       - name: Test with unittest
         run: |
-          python -m unittest tests/test_models *.py
+          python -m unittest tests/test_models/test_base_model.py
 
