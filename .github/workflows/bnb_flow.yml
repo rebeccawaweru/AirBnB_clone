@@ -21,9 +21,6 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: '3.10'
-      - name: Install dependencies
-        run: |
-          python -m pip install
       - name: Pycodestyle
         run: |
           #Making sure our code sticks to the recommended python coding guidelines
