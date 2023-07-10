@@ -25,7 +25,8 @@ jobs:
         run: |
           #Making sure our code sticks to the recommended python coding guidelines
           python -m pip install pycodestyle
+          pycodestyle --first optparse.py
       - name: Test with unittest
         run: |
-          python -m unittest tests
+          python -m unittest tests/test_models *.py
 
