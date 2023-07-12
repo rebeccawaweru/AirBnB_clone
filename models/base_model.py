@@ -15,16 +15,14 @@ class BaseModel():
         to_dict(self)
     """
     def __init__(self, *args, **kwargs):
-            """
-            Initialize attributes: random uuid, dates created/updated
-    
-    
-            """
+        """
+        Initialize attributes: random uuid, dates created/updated
+        """
             if kwargs:
                 for key, val in kwargs.items():
                     if "created_at" == key:
-                        self.created_at = datetime.strptime(kwargs["created_at"],
-                                                            "%Y-%m-%dT%H:%M:%S.%f")
+                        self.created_at = datetime.strptime(
+                                kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
                     elif "updated_at" == key:
                         self.updated_at = datetime.strptime(kwargs["updated_at"],
                                                             "%Y-%m-%dT%H:%M:%S.%f")
@@ -54,7 +52,6 @@ class BaseModel():
         """Returns the string representation of the class BaseModel"""
         cls = self.__class__.__name__
         return "[{}] ({}) {}".format(cls, self.id, self.__dict__)
-
 
     def __repr__(self):
         """
