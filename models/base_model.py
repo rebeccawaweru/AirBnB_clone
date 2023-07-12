@@ -18,23 +18,23 @@ class BaseModel():
         """
         Initialize attributes: random uuid, dates created/updated
         """
-            if kwargs:
-                for key, val in kwargs.items():
-                    if "created_at" == key:
-                        self.created_at = datetime.strptime(
-                                kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
-                    elif "updated_at" == key:
-                        self.updated_at = datetime.strptime(kwargs["updated_at"],
-                                                            "%Y-%m-%dT%H:%M:%S.%f")
-                    elif "__class__" == key:
-                        pass
-                    else:
-                        setattr(self, key, val)
-            else:
-                self.id = str(uuid4())
-                self.created_at = datetime.now()
-                self.updated_at = datetime.now()
-                models.storage.new(self)
+        if kwargs:
+            for key, val in kwargs.items():
+                if "created_at" == key:
+                    self.created_at = datetime.strptime(
+                            kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                elif "updated_at" == key:
+                    self.updated_at = datetime.strptime(
+                            kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                elif "__class__" == key:
+                    pass
+                else:
+                    setattr(self, key, val)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def save(self):
         """Updating updated_at with the current datetime"""
