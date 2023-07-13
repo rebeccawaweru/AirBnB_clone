@@ -5,14 +5,36 @@ from datetime import datetime
 from uuid import uuid4
 
 
-class BaseModel:
-    """Representing the BaseModel of the project"""
-    def __init__(self):
-        """Initialize new BaseModel instance"""
-        timeformat = "%Y-%m-%dT%H:%M:%S.%f"
-        self.id = str(uuid4())
-        self.created_at = datetime.today()
-        self.updated_at = datetime.today()
+class BaseModel():
+    """Base class for Airbnb clone project
+    Methods:
+        __init__(self, *args, **kwargs)
+        __str__(self)
+        __save(self)
+        __repr__(self)
+        to_dict(self)
+    """
+    def __init__(self, *args, **kwargs):
+        """
+        Initialize attributes: random uuid, dates created/updated
+        """
+        if kwargs:
+            for key, val in kwargs.items():
+                if "created_at" == key:
+                    self.created_at = datetime.strptime(
+                            kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                elif "updated_at" == key:
+                    self.updated_at = datetime.strptime(
+                            kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                elif "__class__" == key:
+                    pass
+                else:
+                    setattr(self, key, val)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def save(self):
         """Updating updated_at with the current datetime"""
@@ -30,3 +52,9 @@ class BaseModel:
         """Returns the string representation of the class BaseModel"""
         cls = self.__class__.__name__
         return "[{}] ({}) {}".format(cls, self.id, self.__dict__)
+
+    def __repr__(self):
+        """
+        returns string representation
+        """
+        return (self.__str__())
