@@ -109,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print(dict_object["{}.{}".foramt(larg[0], larg[1])])
 
-    def do_destory(self, arg):
+    def do_destroy(self, arg):
         """Delete a class of a particular id"""
         larg = arg_parse(arg)
         dict_object = storage.all()
