@@ -107,7 +107,7 @@ class HBNBCommand(cmd.Cmd):
         elif "{}.{}".format(larg[0], larg[1]) not in dict_object:
             print("** no instance found **")
         else:
-            print(dict_object["{}.{}".foramt(larg[0], larg[1])])
+            print(dict_object["{}.{}".format(larg[0], larg[1])])
 
     def do_destroy(self, arg):
         """Delete a class of a particular id"""
