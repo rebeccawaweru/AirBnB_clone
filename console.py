@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
         dict_argument = {
             "all": self.do_all,
             "show": self.do_show,
-            "destory": self.do_destory,
+            "destroy": self.do_destroy,
             "count": self.do_count,
             "update": self.do_update
         }
